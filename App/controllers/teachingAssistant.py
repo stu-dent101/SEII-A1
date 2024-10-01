@@ -1,12 +1,13 @@
-from App.models import User
+from App.models import TeachingAssistant
 from App.database import db
 
-def create_user(username, password):
-    newuser = User(username=username, password=password)
-    db.session.add(newuser)
+def create_TA(taID, courseID):
+    teachingAssistant = TeachingAssistant(taID = taID, courseID = courseID)
+    db.session.add(teachingAssistant)
     db.session.commit()
-    return newuser
+    return teachingAssistant
 
+'''
 def get_user_by_username(username):
     return User.query.filter_by(username=username).first()
 
@@ -30,3 +31,4 @@ def update_user(id, username):
         db.session.add(user)
         return db.session.commit()
     return None
+    '''

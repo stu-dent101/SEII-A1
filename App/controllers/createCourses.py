@@ -1,12 +1,13 @@
-from App.models import User
+from App.models import CreateCourses
 from App.database import db
 
-def create_user(username, password):
-    newuser = User(username=username, password=password)
-    db.session.add(newuser)
+def create_newCourse(courseID, courseName):
+    newCourse = CreateCourses(courseID = courseID, courseName = courseName)
+    db.session.add(newCourse)
     db.session.commit()
-    return newuser
+    return newCourse
 
+'''
 def get_user_by_username(username):
     return User.query.filter_by(username=username).first()
 
@@ -15,14 +16,16 @@ def get_user(id):
 
 def get_all_users():
     return User.query.all()
+'''
 
-def get_all_users_json():
-    users = User.query.all()
-    if not users:
+def get_all_courses_json():
+    c = CreateCourses.query.all()
+    if not c:
         return []
-    users = [user.get_json() for user in users]
-    return users
+    c = [courses.get_json() for courses in c]
+    return c
 
+'''
 def update_user(id, username):
     user = get_user(id)
     if user:
@@ -30,3 +33,4 @@ def update_user(id, username):
         db.session.add(user)
         return db.session.commit()
     return None
+    '''
